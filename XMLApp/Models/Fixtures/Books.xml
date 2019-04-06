@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+    <book>
+        <title value="something">
+            Pet Cemetary
+        </title>
+        <author>
+            Stephen King
+        </author>
+    </book>
+    <book>
+        <title>
+            Name of The Wind
+        </title>
+        <author>
+            Patrick Rothfuss
+        </author>
+    </book>
+    <book>
+        <title>
+            Server-side Swift With Kitura
+        </title>
+        <author>
+            David Okun
+        </author>
+    </book>
+    <book>
+        <title>
+            Moby Dick
+        </title>
+        <author>
+            Herman Melville
+        </author>
+    </book>
+    
+</books>
