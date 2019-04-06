@@ -19,6 +19,8 @@ class BooksTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         openFile()
+        
+        tableView.tableFooterView = UIView()
     }
     
     func openFile() {
@@ -28,7 +30,10 @@ class BooksTableViewController: UITableViewController {
         
         parser = XMLParser(contentsOf: url)
         parser?.delegate = xmlParserDelegate
-        parser?.parse()
+        
+        if parser?.parse() ?? false {
+            tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source

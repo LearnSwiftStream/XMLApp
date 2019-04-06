@@ -8,14 +8,20 @@
 
 import Foundation
 
+struct Publisher {
+    var name: String
+}
+
 struct Book {
     var title: String
     var author: String
+    var publisher: Publisher?
 }
 
 class BookParserDelegate: ParserDelegate, XMLParserDelegate {
     var author: String = ""
     var title: String = ""
+    var publisherName: String = ""
     var books: [Book] = []
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
@@ -28,13 +34,22 @@ class BookParserDelegate: ParserDelegate, XMLParserDelegate {
             self.title = foundString
         }
         
+        if elementName == "name" {
+            self.publisherName = foundString
+        }
+        
         if elementName == "book" {
-            books.append(Book(title: title, author: author))
+            var publisher: Publisher?
+            if !publisherName.isEmpty {
+                publisher = Publisher(name: publisherName)
+                publisherName = ""
+            }
+            
+            books.append(Book(title: title, author: author, publisher: publisher))
         }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        print(string)
         foundString = string.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
